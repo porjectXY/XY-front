@@ -1,5 +1,4 @@
 const PostCard = ({ post }) => {
-  // Asegúrate de que likes y comments sean arrays
   const likesCount = Array.isArray(post.likes) ? post.likes.length : 0
   const commentsCount = Array.isArray(post.comments) ? post.comments.length : 0
 
@@ -10,7 +9,7 @@ const PostCard = ({ post }) => {
           <div className='card'>
             <div className='card-content'>
               <p className='title'>{post.content}</p>
-              <p className='subtitle'>@{post.userId?.username || 'unknown author'}</p> {/* Añadido un fallback para username */}
+              <p className='subtitle'>@{post.userId?.username || 'unknown author'}</p>
               <div className='buttons'>
                 <button className='button is-small is-info'>
                   <span className='icon'>
