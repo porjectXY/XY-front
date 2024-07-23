@@ -1,9 +1,11 @@
+import NavBar from '@/components/NavBar'
+import { Feed } from '@/pages'
 
-function App() {
-
+function App () {
   return (
     <>
-    <h1>puta</h1>
+      <NavBar />
+      <Feed />
     </>
   )
 }
