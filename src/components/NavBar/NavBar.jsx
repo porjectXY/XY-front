@@ -1,4 +1,5 @@
-import React, { useState } from 'react'
+import { useState } from 'react'
+import { Link } from 'react-router-dom'
 import logo from '@/assets/medios.png'
 
 const NavBar = () => {
@@ -12,7 +13,7 @@ const NavBar = () => {
     <nav className='navbar' role='navigation' aria-label='main navigation'>
       <div className='navbar-brand'>
         <a className='navbar-item' href='/'>
-          <img src={logo} alt='Logo' width='50' height='30' />
+          <img src={logo} alt='Logo' width='35' height='110' />
         </a>
         <a
           role='button'
@@ -29,9 +30,9 @@ const NavBar = () => {
 
       <div id='navbarBasicExample' className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
         <div className='navbar-start'>
-          <a className='navbar-item' href='/'>
-            Home
-          </a>
+          <Link className='navbar-item' to='/'>
+            Feed
+          </Link>
           <a className='navbar-item' href='/documentation'>
             Documentation
           </a>
@@ -60,12 +61,12 @@ const NavBar = () => {
         <div className='navbar-end'>
           <div className='navbar-item'>
             <div className='buttons'>
-              <a className='button is-primary' href='/signup'>
-                <strong>Sign up</strong>
-              </a>
-              <a className='button is-light' href='/login'>
+              <Link className='button is-primary' to='/register'>
+                <strong>Register</strong>
+              </Link>
+              <Link className='button is-light' to='/login'>
                 Log in
-              </a>
+              </Link>
             </div>
           </div>
         </div>
