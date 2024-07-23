@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from '@/components/PostCard'
-import { getPosts } from '../services/useService'
+import api from '../services/api'
+// import { getPosts } from '../services/useService'
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
@@ -8,7 +9,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await getPosts()
+        const response = await api.get('/posts')
         setPosts(response.data)
         console.log(response.data)
       } catch (error) {
@@ -21,7 +22,7 @@ const Feed = () => {
 
   return (
     <div>
-      {posts.map(post => (
+      {posts.slice().reverse().map(post => (
         <PostCard key={post._id} post={post} />
       ))}
     </div>

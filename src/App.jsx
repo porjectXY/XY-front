@@ -1,13 +1,17 @@
 import { BrowserRouter } from 'react-router-dom'
 import NavBar from '@/components/NavBar'
 import RoutesIndex from '@/routes'
+import { AuthProvider } from '@/context/AuthContext'
 
 function App () {
   return (
     <>
+
       <BrowserRouter>
-        <NavBar />
-        <RoutesIndex />
+        <AuthProvider>
+          <NavBar />
+          <RoutesIndex />
+        </AuthProvider>
       </BrowserRouter>
 
     </>
