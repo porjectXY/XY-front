@@ -1,9 +1,11 @@
 import { useState } from 'react'
 import { Link } from 'react-router-dom'
 import logo from '@/assets/medios.png'
+import { useAuth } from '@/context/AuthContext'
 
 const NavBar = () => {
   const [isActive, setIsActive] = useState(false)
+  const { user, logOut } = useAuth()
 
   const toggleBurgerMenu = () => {
     setIsActive(!isActive)
@@ -30,43 +32,51 @@ const NavBar = () => {
 
       <div id='navbarBasicExample' className={`navbar-menu ${isActive ? 'is-active' : ''}`}>
         <div className='navbar-start'>
-          <Link className='navbar-item' to='/'>
-            Feed
-          </Link>
-          <a className='navbar-item' href='/documentation'>
-            Documentation
-          </a>
-          <div className='navbar-item has-dropdown is-hoverable'>
-            <a className='navbar-link' href='#'>
-              More
-            </a>
-            <div className='navbar-dropdown'>
-              <a className='navbar-item' href='/about'>
-                About
+          {user && (
+            <>
+              <Link className='navbar-item' to='/'>
+                Feed
+              </Link>
+              <a className='navbar-item' href='/documentation'>
+                Documentation
               </a>
-              <a className='navbar-item is-selected' href='/jobs'>
-                Jobs
-              </a>
-              <a className='navbar-item' href='/contact'>
-                Contact
-              </a>
-              <hr className='navbar-divider' />
-              <a className='navbar-item' href='/report'>
-                Report an issue
-              </a>
-            </div>
-          </div>
+              <div className='navbar-item has-dropdown is-hoverable'>
+                <a className='navbar-link' href='#'>
+                  More
+                </a>
+                <div className='navbar-dropdown'>
+                  <a className='navbar-item' href='/about'>
+                    About
+                  </a>
+                  <a className='navbar-item is-selected' href='/jobs'>
+                    Jobs
+                  </a>
+                  <a className='navbar-item' href='/contact'>
+                    Contact
+                  </a>
+                  <hr className='navbar-divider' />
+                  <button className='button is-danger' onClick={logOut}>
+                    LogOut
+                  </button>
+                </div>
+              </div>
+            </>
+          )}
         </div>
 
         <div className='navbar-end'>
           <div className='navbar-item'>
             <div className='buttons'>
-              <Link className='button is-primary' to='/register'>
-                <strong>Register</strong>
-              </Link>
-              <Link className='button is-light' to='/login'>
-                Log in
-              </Link>
+              {!user && (
+                <>
+                  <Link className='button is-primary' to='/register'>
+                    <strong>Register</strong>
+                  </Link>
+                  <Link className='button is-light' to='/login'>
+                    Log in
+                  </Link>
+                </>
+              )}
             </div>
           </div>
         </div>

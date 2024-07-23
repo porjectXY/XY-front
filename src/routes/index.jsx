@@ -1,5 +1,6 @@
 import { Routes, Route } from 'react-router-dom'
 import { Login, Feed, Register, Profile } from '@/pages'
+import PrivateRoute from './ProviderRouter'
 
 const RoutesIndex = () => {
   return (
@@ -7,8 +8,10 @@ const RoutesIndex = () => {
       <Routes>
         <Route path='/register' element={<Register />} />
         <Route path='/login' element={<Login />} />
-        <Route path='/' element={<Feed />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route element={<PrivateRoute />}>
+          <Route path='/' element={<Feed />} />
+          <Route path='/profile' element={<Profile />} />
+        </Route>
       </Routes>
 
     </>
