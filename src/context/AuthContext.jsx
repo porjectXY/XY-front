@@ -40,7 +40,7 @@ const AuthProvider = ({ children }) => {
           }
         })
         setUser(userRes.data.user)
-        navigate('/profile')
+        navigate(`/profile/${userRes.data.user._id}`)
         return
       }
       throw new Error(res.message)

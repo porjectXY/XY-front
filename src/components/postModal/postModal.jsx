@@ -1,5 +1,5 @@
 import React, { useState } from 'react'
-import api from '@/services/api' // Asegúrate de tener la configuración correcta para las llamadas a la API
+import api from '@/services/api'
 
 const PostModal = ({ post, onClose }) => {
   const [newComment, setNewComment] = useState('')
@@ -9,12 +9,12 @@ const PostModal = ({ post, onClose }) => {
   }
 
   const handleCommentSubmit = async () => {
-    if (!newComment.trim()) return // Evitar comentarios vacíos
+    if (!newComment.trim()) return
     try {
       await api.post(`/posts/${post._id}/comments`, { content: newComment })
-      // Actualiza el post localmente (idealmente deberías obtener el post actualizado desde el servidor)
+
       post.comments.push({ content: newComment, _id: new Date().toISOString() })
-      setNewComment('') // Limpiar el campo de entrada
+      setNewComment('')
     } catch (error) {
       console.error('Error adding comment:', error)
     }

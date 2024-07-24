@@ -1,34 +1,37 @@
+import React from 'react'
+
 const PostCard = ({ post }) => {
-  const likesCount = Array.isArray(post.likes) ? post.likes.length : 0
-  const commentsCount = Array.isArray(post.comments) ? post.comments.length : 0
+  const { userId, content, timestamp, comments, likes } = post
 
   return (
-    <>
-      <div className='columns is-centered'>
-        <div className='column is-half'>
-          <div className='card'>
-            <div className='card-content'>
-              <p className='title'>{post.content}</p>
-              <p className='subtitle'>@{post.userId?.username || 'unknown author'}</p>
-              <div className='buttons'>
-                <button className='button is-small is-info'>
-                  <span className='icon'>
-                    <i className='fas fa-thumbs-up' />
-                  </span>
-                  <span>{likesCount}</span>
-                </button>
-                <button className='button is-small is-link'>
-                  <span className='icon'>
-                    <i className='fas fa-comment' />
-                  </span>
-                  <span>{commentsCount}</span>
-                </button>
+    <div className='box'>
+      <article className='media'>
+        <figure className='media-left'>
+          <p className='image is-64x64'>
+            <img src={userId.avatar} alt={userId.username} className='is-rounded' />
+          </p>
+        </figure>
+        <div className='media-content'>
+          <div className='content'>
+            <p>
+              <strong>{userId.username}</strong>
+              <br />
+              {content}
+              <br />
+              <small>{new Date(timestamp).toLocaleString()}</small>
+            </p>
+          </div>
+          <div className='media-footer'>
+            <div className='level'>
+              <div className='level-left'>
+                <span className='level-item'>{comments.length} Comments</span>
+                <span className='level-item'>{likes.length} Likes</span>
               </div>
             </div>
           </div>
         </div>
-      </div>
-    </>
+      </article>
+    </div>
   )
 }
 

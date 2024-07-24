@@ -1,7 +1,6 @@
 import React, { useEffect, useState } from 'react'
+import api from '../services/api' // Asegúrate de que la ruta sea correcta
 import PostCard from '@/components/PostCard'
-// import api from '../services/api'
-import { getPosts } from '../services/useService'
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
@@ -9,9 +8,8 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await getPosts()
+        const response = await api.get('/posts') // Usa la instancia `api`
         setPosts(response.data)
-        console.log(response.data)
       } catch (error) {
         console.error('Error fetching posts:', error)
       }
@@ -21,10 +19,23 @@ const Feed = () => {
   }, [])
 
   return (
-    <div>
-      {posts.slice().reverse().map(post => (
-        <PostCard key={post._id} post={post} />
-      ))}
+    <div className='container'>
+      <div className='box'>
+        <div className='field'>
+          <div className='control'>
+            <textarea
+              className='textarea is-primary'
+              placeholder='¿Qué está pasando?'
+            />
+          </div>
+        </div>
+        <button className='button is-primary is-fullwidth mt-2'>
+          Publicar
+        </button>
+        {posts.slice().reverse().map(post => (
+          <PostCard key={post._id} post={post} />
+        ))}
+      </div>
     </div>
   )
 }
