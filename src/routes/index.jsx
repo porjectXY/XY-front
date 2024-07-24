@@ -10,7 +10,7 @@ const RoutesIndex = () => {
         <Route path='/login' element={<Login />} />
         <Route element={<PrivateRoute />}>
           <Route path='/' element={<Feed />} />
-          <Route path='/profile' element={<Profile />} />
+          <Route path='profile/:userId' element={<Profile />} />
         </Route>
       </Routes>
 

@@ -37,9 +37,9 @@ const NavBar = () => {
               <Link className='navbar-item' to='/'>
                 Feed
               </Link>
-              <a className='navbar-item' href='/documentation'>
-                Documentation
-              </a>
+              <Link className='navbar-item' to={`/profile/${user._id}`}>
+                Profile
+              </Link>
               <div className='navbar-item has-dropdown is-hoverable'>
                 <a className='navbar-link' href='#'>
                   More

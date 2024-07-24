@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import PostCard from '@/components/PostCard'
-import api from '../services/api'
-// import { getPosts } from '../services/useService'
+// import api from '../services/api'
+import { getPosts } from '../services/useService'
 
 const Feed = () => {
   const [posts, setPosts] = useState([])
@@ -9,7 +9,7 @@ const Feed = () => {
   useEffect(() => {
     const fetchPosts = async () => {
       try {
-        const response = await api.get('/posts')
+        const response = await getPosts()
         setPosts(response.data)
         console.log(response.data)
       } catch (error) {
