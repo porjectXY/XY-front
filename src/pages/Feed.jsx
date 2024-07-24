@@ -19,9 +19,9 @@ const Feed = () => {
   }, [])
 
   return (
-    <div className='container'>
+    <div className='container mt-6'>
       <div className='box'>
-        <div className='field'>
+        <div className='field mt-2'>
           <div className='control'>
             <textarea
               className='textarea is-primary'
@@ -33,7 +33,9 @@ const Feed = () => {
           Publicar
         </button>
         {posts.slice().reverse().map(post => (
-          <PostCard key={post._id} post={post} />
+          <div className='mt-6' key={post._id}>
+            <PostCard post={post} />
+          </div>
         ))}
       </div>
     </div>
