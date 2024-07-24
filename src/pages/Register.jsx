@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react'
 import { useNavigate } from 'react-router-dom'
-import api from '@/services/api' // Usa tu servicio API
+import api from '@/services/api'
 import logo from '@/assets/medios.png'
 
 const Register = () => {

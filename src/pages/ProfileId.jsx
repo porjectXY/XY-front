@@ -4,7 +4,7 @@ import api from '@/services/api'
 import PostModal from '@/components/postModal'
 
 const ProfileId = () => {
-  const { userId } = useParams() // Obtiene el userId desde los parámetros de la URL
+  const { userId } = useParams() 
   const [user, setUser] = useState(null)
   const [posts, setPosts] = useState([])
   const [followers, setFollowers] = useState([])
@@ -63,7 +63,6 @@ const ProfileId = () => {
   }
 
   const handleUserClick = (id) => {
-    // Puedes manejar la navegación a otro perfil de usuario aquí
   }
 
   if (loadingProfile || loadingFollowData) {
