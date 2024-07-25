@@ -48,9 +48,9 @@ const NavBar = () => {
                   <Link className='navbar-item' to='/following'>
                     Following's
                   </Link>
-                  <a className='navbar-item' href='/jobs'>
-                    Jobs
-                  </a>
+                  <Link className='navbar-item' to='/chat'>
+                    Chat
+                  </Link>
                   <a className='navbar-item' href='/contact'>
                     Contact
                   </a>

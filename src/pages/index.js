@@ -3,6 +3,7 @@ import Login from './Login'
 import Register from './Register'
 import Profile from './Profile'
 import Following from './Following'
+import Chat from './Chat'
 // import ProfileId from './ProfileId'
 
 export {
@@ -10,6 +11,7 @@ export {
   Login,
   Register,
   Profile,
-  Following
+  Following,
+  Chat
   // ProfileId
 }
