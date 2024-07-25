@@ -45,9 +45,9 @@ const NavBar = () => {
                   More
                 </a>
                 <div className='navbar-dropdown'>
-                  <a className='navbar-item' href='/about'>
-                    About
-                  </a>
+                  <Link className='navbar-item' to='/following'>
+                    Following's
+                  </Link>
                   <a className='navbar-item is-selected' href='/jobs'>
                     Jobs
                   </a>
