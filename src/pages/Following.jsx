@@ -31,7 +31,7 @@ const Following = () => {
 
   return (
     <div className='container'>
-      <h1 className='title'>Posts de tus Seguidores</h1>
+      <h1 className='title'>Posts</h1>
       <div className='columns is-multiline'>
         {posts.length > 0
           ? (

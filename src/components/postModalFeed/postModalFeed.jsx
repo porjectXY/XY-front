@@ -39,7 +39,17 @@ const PostModalFeed = ({ post, onClose }) => {
         </div>
         <div className='field'>
           <div className='control'>
-            <textarea className='textarea' placeholder='Write a comment...' />
+            <textarea
+              className='textarea'
+              placeholder='Write a comment...'
+            />
+          </div>
+        </div>
+        <div className='field'>
+          <div className='control'>
+            <button className='button is-primary'>
+              Publish
+            </button>
           </div>
         </div>
       </div>

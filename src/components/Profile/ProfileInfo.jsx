@@ -10,6 +10,7 @@ const ProfileInfo = ({ userId }) => {
   const [isFollowingModalOpen, setIsFollowingModalOpen] = useState(false)
   const [loading, setLoading] = useState(true)
   const [error, setError] = useState(null)
+  const [isFollowingUser, setIsFollowingUser] = useState(false)
 
   useEffect(() => {
     if (!userId) {
@@ -24,6 +25,13 @@ const ProfileInfo = ({ userId }) => {
         setUser(response.data)
         setFollowers(response.data.followers)
         setFollowing(response.data.following)
+
+        const token = localStorage.getItem('token')
+        const userResponse = await api('/auth/me', {
+          headers: { Authorization: `${token}` }
+        })
+        const currentUserId = userResponse.data._id
+        setIsFollowingUser(response.data.followers.some(f => f._id === currentUserId))
       } catch (error) {
         setError('Error fetching user data')
         console.error('Error fetching user data:', error)
@@ -42,11 +50,25 @@ const ProfileInfo = ({ userId }) => {
     setIsFollowingModalOpen(!isFollowingModalOpen)
   }
 
+  const handleFollowClick = async () => {
+    try {
+      const token = localStorage.getItem('token')
+      const response = await api.post(`/users/${userId}/follow`, {}, {
+        headers: { Authorization: `${token}` }
+      })
+      if (response.status === 200) {
+        setIsFollowingUser(!isFollowingUser)
+      }
+    } catch (error) {
+      console.error('Error following user:', error)
+    }
+  }
+
   if (loading) return <p>Loading...</p>
   if (error) return <p>{error}</p>
 
   return (
-    <div className='column is-one-quarter'>
+    <div className='column is-one-quarter mt-6'>
       <div className='box'>
         <div className='media'>
           <figure className='media-left'>
@@ -76,6 +98,12 @@ const ProfileInfo = ({ userId }) => {
             </div>
           </div>
         </nav>
+        <button
+          className={`button ${isFollowingUser ? 'is-info' : 'is-primary'}`}
+          onClick={handleFollowClick}
+        >
+          {isFollowingUser ? 'Following' : 'Follow'}
+        </button>
       </div>
       <ModalFollows
         isOpen={isFollowersModalOpen}

@@ -37,7 +37,7 @@ const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShow
   }
 
   return (
-    <div className='column is-centered'>
+    <div className='column is-centered mt-5'>
       <div className='box'>
         <div className='field'>
           <div className='control'>
