@@ -2,7 +2,7 @@ import { useState } from 'react'
 import api from '@/services/api'
 import PostModal from '../postModal/postModal'
 
-const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShowSuccessAlert }) => {
+const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShowSuccessAlert, onNewPost }) => {
   const [newPostContent, setNewPostContent] = useState('')
   const [selectedPost, setSelectedPost] = useState(null)
 
@@ -30,6 +30,7 @@ const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShow
       setPosts([response.data.post, ...posts])
       setNewPostContent('')
       setShowSuccessAlert(true)
+      onNewPost()  // Emitir evento cuando se crea un nuevo post
       setTimeout(() => setShowSuccessAlert(false), 2000)
     } catch (error) {
       console.error('Error al crear el post:', error)

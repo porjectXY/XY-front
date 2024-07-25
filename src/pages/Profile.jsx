@@ -15,22 +15,22 @@ const Profile = () => {
   const [followersModal, setFollowersModal] = useState(false)
   const [followingModal, setFollowingModal] = useState(false)
 
-  useEffect(() => {
+  const fetchPosts = async () => {
     if (!userId) return
 
-    const fetchProfile = async () => {
-      try {
-        const response = await api.get(`/users/${userId}/profile`)
-        setUser(response.data.user)
-        setPosts(response.data.posts)
-      } catch (error) {
-        console.error('Error fetching profile:', error)
-      } finally {
-        setLoadingProfile(false)
-      }
+    try {
+      const response = await api.get(`/users/${userId}/profile`)
+      setUser(response.data.user)
+      setPosts(response.data.posts)
+    } catch (error) {
+      console.error('Error fetching profile:', error)
+    } finally {
+      setLoadingProfile(false)
     }
+  }
 
-    fetchProfile()
+  useEffect(() => {
+    fetchPosts()
   }, [userId])
 
   useEffect(() => {
@@ -83,6 +83,7 @@ const Profile = () => {
         setPosts={setPosts}
         showSuccessAlert={showSuccessAlert}
         setShowSuccessAlert={setShowSuccessAlert}
+        onNewPost={fetchPosts}  // Pasar la función fetchPosts como prop
       />
     </div>
   )
