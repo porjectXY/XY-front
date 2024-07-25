@@ -51,7 +51,7 @@ const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShow
           </div>
         </div>
         <button className='button is-primary is-fullwidth mt-2' onClick={handleNewPostSubmit}>
-          Publicar
+          Post
         </button>
         {showSuccessAlert && (
           <div className='notification is-success mt-2'>

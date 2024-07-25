@@ -64,7 +64,7 @@ const Login = () => {
                       type='submit'
                       className='button is-fullwidth is-primary'
                     >
-                      Enviar
+                      Login
                     </button>
                   </div>
                 </form>
