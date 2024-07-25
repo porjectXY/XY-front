@@ -30,7 +30,7 @@ const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShow
       setPosts([response.data.post, ...posts])
       setNewPostContent('')
       setShowSuccessAlert(true)
-      onNewPost()  // Emitir evento cuando se crea un nuevo post
+      onNewPost()
       setTimeout(() => setShowSuccessAlert(false), 2000)
     } catch (error) {
       console.error('Error al crear el post:', error)

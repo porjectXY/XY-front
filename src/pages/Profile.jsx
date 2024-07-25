@@ -83,7 +83,7 @@ const Profile = () => {
         setPosts={setPosts}
         showSuccessAlert={showSuccessAlert}
         setShowSuccessAlert={setShowSuccessAlert}
-        onNewPost={fetchPosts}  // Pasar la función fetchPosts como prop
+        onNewPost={fetchPosts}
       />
     </div>
   )
