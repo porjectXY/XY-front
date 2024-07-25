@@ -48,7 +48,7 @@ const NavBar = () => {
                   <Link className='navbar-item' to='/following'>
                     Following's
                   </Link>
-                  <a className='navbar-item is-selected' href='/jobs'>
+                  <a className='navbar-item' href='/jobs'>
                     Jobs
                   </a>
                   <a className='navbar-item' href='/contact'>

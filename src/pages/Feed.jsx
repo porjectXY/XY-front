@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, useCallback } from 'react'
 import api from '../services/api'
 import PostCard from '@/components/PostCard'
 
@@ -7,9 +7,15 @@ const Feed = () => {
   const [newPost, setNewPost] = useState('')
   const [showSuccessAlert, setShowSuccessAlert] = useState(false)
   const [userId, setUserId] = useState(null)
+  const [searchTerm, setSearchTerm] = useState('')
+  const [filteredPosts, setFilteredPosts] = useState([])
 
   const handleNewPostChange = (e) => {
     setNewPost(e.target.value)
+  }
+
+  const handleSearchChange = (e) => {
+    setSearchTerm(e.target.value)
   }
 
   const fetchPosts = async () => {
@@ -20,6 +26,19 @@ const Feed = () => {
       console.error('Error fetching posts:', error)
     }
   }
+
+  const searchUsers = useCallback(async () => {
+    try {
+      const response = await api.get('/search', { params: { searchTerm } })
+      const userNames = response.data.users.map(user => user.username)
+      
+      // Filtra posts que contengan usernames de los usuarios encontrados
+      const filtered = posts.filter(post => userNames.includes(post.userId.username))
+      setFilteredPosts(filtered)
+    } catch (error) {
+      console.error('Error searching users:', error)
+    }
+  }, [searchTerm, posts])
 
   const getUserIdFromToken = (token) => {
     try {
@@ -39,6 +58,14 @@ const Feed = () => {
     }
     fetchPosts()
   }, [])
+
+  useEffect(() => {
+    if (searchTerm) {
+      searchUsers()
+    } else {
+      setFilteredPosts(posts)
+    }
+  }, [searchTerm, posts, searchUsers])
 
   const handleNewPostSubmit = async () => {
     if (!newPost.trim()) return
@@ -84,7 +111,18 @@ const Feed = () => {
             Post created successfully!
           </div>
         )}
-        {posts.slice().reverse().map((post) => (
+        <div className='field mt-4'>
+          <div className='control'>
+            <input
+              className='input'
+              type='text'
+              placeholder='Search users by username...'
+              value={searchTerm}
+              onChange={handleSearchChange}
+            />
+          </div>
+        </div>
+        {filteredPosts.slice().reverse().map((post) => (
           <div className='mt-6' key={post._id}>
             <PostCard post={post} />
           </div>
