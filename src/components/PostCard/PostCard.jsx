@@ -1,9 +1,11 @@
-import React, { useState } from 'react'
-import PostModalFeed from '../postModalFeed/postModalFeed'
+import React from 'react'
+import { useNavigate } from 'react-router-dom'
+import PostModalFeed from '../postModalFeed/'
 
 const PostCard = ({ post }) => {
   const { userId, content, timestamp, comments, likes } = post
-  const [modalOpen, setModalOpen] = useState(false)
+  const [modalOpen, setModalOpen] = React.useState(false)
+  const navigate = useNavigate()
 
   const openModal = () => {
     setModalOpen(true)
@@ -13,12 +15,22 @@ const PostCard = ({ post }) => {
     setModalOpen(false)
   }
 
+  const goToProfile = () => {
+    navigate(`/profile/${userId._id}`)
+  }
+
   return (
     <div className='box'>
       <article className='media'>
         <figure className='media-left'>
           <p className='image is-64x64'>
-            <img src={userId.avatar} alt={userId.username} className='is-rounded' />
+            <img
+              src={userId.avatar}
+              alt={userId.username}
+              className='is-rounded'
+              onClick={goToProfile}
+              style={{ cursor: 'pointer' }}
+            />
           </p>
         </figure>
         <div className='media-content'>

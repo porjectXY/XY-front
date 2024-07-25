@@ -24,7 +24,7 @@ const ProfilePosts = ({ userId, user, posts, setPosts, showSuccessAlert, setShow
       const token = localStorage.getItem('token')
       const response = await api.post(`/users/${userId}/posts`, { content: newPostContent }, {
         headers: {
-          Authorization: `Bearer ${token}`
+          Authorization: `${token}`
         }
       })
       setPosts([response.data.post, ...posts])

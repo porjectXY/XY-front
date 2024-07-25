@@ -14,7 +14,7 @@ const Feed = () => {
 
   const fetchPosts = async () => {
     try {
-      const response = await api.get('/posts') // Usa la instancia `api`
+      const response = await api.get('/posts')
       setPosts(response.data)
     } catch (error) {
       console.error('Error fetching posts:', error)
@@ -24,7 +24,7 @@ const Feed = () => {
   const getUserIdFromToken = (token) => {
     try {
       const payload = JSON.parse(atob(token.split('.')[1]))
-      return payload.userId // Asegúrate de que el payload del token contiene `userId`
+      return payload.userId
     } catch (error) {
       console.error('Error decoding token:', error)
       return null
@@ -56,7 +56,7 @@ const Feed = () => {
       setShowSuccessAlert(true)
       setTimeout(() => setShowSuccessAlert(false), 2000)
       setNewPost('')
-      fetchPosts() // Recargar los posts
+      fetchPosts()
     } catch (error) {
       console.error('Error creating post:', error)
     }
