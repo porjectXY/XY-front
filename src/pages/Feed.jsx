@@ -31,8 +31,7 @@ const Feed = () => {
     try {
       const response = await api.get('/search', { params: { searchTerm } })
       const userNames = response.data.users.map(user => user.username)
-      
-      // Filtra posts que contengan usernames de los usuarios encontrados
+
       const filtered = posts.filter(post => userNames.includes(post.userId.username))
       setFilteredPosts(filtered)
     } catch (error) {
